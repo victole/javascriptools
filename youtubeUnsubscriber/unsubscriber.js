@@ -21,6 +21,7 @@ async function cancelarSuscripciones() {
     let total = suscriptoButtons.length;
     while (i < total) {
         try {
+            console.log("unsubscribe " + (i + 1) + " faltan " + (total -(i + 1)))
             // Obtener el botón "Suscripto"
             let suscriptoButton = suscriptoButtons[i];
             if (!suscriptoButton) {
@@ -60,14 +61,12 @@ async function cancelarSuscripciones() {
             console.log("Desuscripción completada.");
 
             // Esperar antes de pasar a la siguiente suscripción
-            await waitForTimeout(2000);
+            await waitForTimeout(1000);
             i++;
         } catch (error) {
-            console.log("Error o no hay más suscripciones:", error);
-            break;
+            console.log("Error:", error);
+            i++;
+            continue;
         }
     }
 }
-
-// Llamar a la función
-cancelarSuscripciones();
